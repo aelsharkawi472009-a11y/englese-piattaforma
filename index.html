@@ -6,11 +6,161 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مستر شادي نصر | Mester Shady Nasr - شيكسبير الإنجليزية</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="icon" type="image/png" href="8a5c7b63-63df-40ca-b342-9eb30d051056.png">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="home.css">
+
+    <style>
+        .custom-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .custom-modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            position: relative;
+            width: min(100%, 450px);
+            max-height: 85vh;
+            overflow-y: auto;
+            background: rgba(20, 30, 48, 0.65);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 28px;
+            padding: 32px 24px;
+            text-align: center;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(30px) brightness(1.1);
+            -webkit-backdrop-filter: blur(30px) brightness(1.1);
+            animation: iosModalApper 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes iosModalApper {
+            from {
+                transform: scale(0.92) translateY(10px);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1) translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-content h3 {
+            margin: 0 0 24px;
+            color: #ffffff;
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            width: 32px;
+            height: 32px;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .close-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            color: #ffffff;
+        }
+
+        .modal-body-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .grade-block {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 18px;
+            padding: 16px;
+            text-align: right;
+        }
+
+        .grade-title {
+            color: #60a5fa;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .terms-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .term-btn {
+            display: inline-block;
+            text-align: center;
+            padding: 12px 8px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 0.88rem;
+            text-decoration: none;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .term-btn:hover {
+            background: rgba(59, 130, 246, 0.85);
+            border-color: rgba(147, 197, 253, 0.6);
+            box-shadow: 0 6px 15px rgba(59, 130, 246, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .logo-circle {
+            width: 50px;
+            height: 50px;
+            background: rgb(255, 255, 255);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 2px solid #ffffff;
+            flex-shrink: 0;
+        }
+
+        .logo-circle img {
+            width: 85%;
+            height: auto;
+            border-radius: 50%;
+        }
+    </style>
 </head>
 
 <body>
@@ -19,23 +169,23 @@
     <header class="site-header scrolled" id="siteHeader">
         <div class="nav-shell container">
             <a class="brand" href="#home" aria-label="شيكسبير الإنجليزية - الرئيسية">
-                <span class="brand-word">
-                    <span class="brand-ar">مستر شادي نصر</span>
-                    <span class="brand-separator" aria-hidden="true">-</span>
-                    <span class="brand-en" dir="ltr">Mester Shady Nasr</span>
+                <span class="logo-circle">
+                    <img src="8a5c7b63-63df-40ca-b342-9eb30d051056.png" alt="AE Logo">
                 </span>
+                <span class="brand-ar">مستر شادي نصر</span>
             </a>
 
             <nav aria-label="التنقل الرئيسي">
                 <ul class="nav-links">
                     <li><a href="#home" class="active">الرئيسية</a></li>
                     <li><a href="#metrics">الأرقام والإحصائيات</a></li>
-                    <li><a href="#stages"> المراحل الدراسية</a></li>
+                    <li><a href="#stages">المراحل الدراسية</a></li>
+                    <li><a href="#schedules">الجدول</a></li>
                 </ul>
             </nav>
 
             <div class="nav-actions">
-                <a class="nav-cta" href="#stages">ابدأ التعلم الآن ➔</a>
+                <a class="nav-cta" href="#stages">ابدأ التعلم الآن </a>
             </div>
         </div>
     </header>
@@ -54,14 +204,15 @@
                     </p>
 
                     <div class="hero-actions">
-                        <a class="button button-primary" href="#stages">
-                            اختر مرحلتك الدراسية
-                            <svg class="button-arrow" viewBox="0 0 20 20" aria-hidden="true">
+                        <a class="button button-primary" href="#stages">اختر مرحلتك الدراسية<svg class="button-arrow"
+                                viewBox="0 0 20 20" aria-hidden="true">
                                 <path d="M15.5 10H4.5m0 0 4.25-4.25M4.5 10l4.25 4.25" fill="none" stroke="currentColor"
                                     stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path>
                             </svg>
                         </a>
                         <a class="button button-secondary" href="#metrics">شاهد إحصائيات الطلاب</a>
+
+                        <a class="button button-secondary" href="#schedules"> جدول المواعيد </a>
                     </div>
 
                     <ul class="hero-meta">
@@ -119,6 +270,7 @@
                                 <strong>اختبارات تفاعلية</strong>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -178,12 +330,8 @@
                     <article class="education-card">
                         <div class="education-watermark">PREP</div>
                         <div class="education-card-head">
-                            <div class="education-icon">
-                                <svg viewBox="0 0 24 24">
-                                    <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
-                                </svg>
-                            </div>
-                            <span class="education-label">تأسيس وشرح متكامل</span>
+
+                            <span class="education-label"> الإعدادية </span>
                         </div>
                         <div class="education-card-body">
                             <div class="education-copy">
@@ -195,8 +343,8 @@
                                     <li>تدريبات واختبارات شهرية</li>
                                     <li>شرح تبسيطي للمنهج</li>
                                 </ul>
-                                <a href="#stages" class="button button-primary" style="margin-top: 25px;">دخول محتوى
-                                    الإعدادية ➔</a>
+                                <a href="javascript:void(0)" onclick="openModal('prep-modal')"
+                                    class="button button-primary" style="margin-top: 25px;"> السنة الدراسية </a>
                             </div>
                         </div>
                     </article>
@@ -204,13 +352,9 @@
                     <article class="education-card">
                         <div class="education-watermark">SEC</div>
                         <div class="education-card-head">
-                            <div class="education-icon" style="background: linear-gradient(145deg, #4169ff, #3153d6);">
-                                <svg viewBox="0 0 24 24">
-                                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-                                </svg>
-                            </div>
+
                             <span class="education-label"
-                                style="border-color: rgba(65, 105, 255, 0.35); color: #89a0ff; background: rgba(65, 105, 255, 0.07);">ثانوية
+                                style="border-color: rgba(89, 111, 191, 0.35); color: #89a0ff; background: rgba(65, 105, 255, 0.07);">ثانوية
                                 عامة</span>
                         </div>
                         <div class="education-card-body">
@@ -224,8 +368,8 @@
                                     <li>مراجعات مكثفة للدرجة النهائية</li>
                                     <li>تدريب على كتابة المقال والتعبير</li>
                                 </ul>
-                                <a href="#stages" class="button button-primary" style="margin-top: 25px;">دخول محتوى
-                                    الثانوية ➔</a>
+                                <a href="javascript:void(0)" onclick="openModal('sec-modal')"
+                                    class="button button-primary" style="margin-top: 25px;"> السنة الدراسية </a>
                             </div>
                         </div>
                     </article>
@@ -233,15 +377,20 @@
             </div>
         </section>
 
+
+
         <section class="schedule-section" id="schedules">
             <div class="container">
                 <div class="schedule-banner">
                     <div class="schedule-info">
                         <p class="eyebrow">مواعيد الحصص والسناتر</p>
-                        <h2>حمل جدول المواعيد الكامل أو استعرض المواعيد المتاحة</h2>
+                        <h2>حمل جدول المواعيد الكامل أو استعرض <br>المواعيد المتاحة</h2>
                         <p>تعرف على أوقات وأماكن التواجد في جميع السناتر لكل المراحل الدراسية.</p>
                     </div>
-                    <a href="schedules.html" class="button button-primary">جدول المواعيد</a>
+                    <div class="hero-actions">
+                        <a href="gadwal.html" class="button button-primary">جدول المواعيد</a>
+                        <a href="contact.html" class="button button-secondary">حجز واستفسار</a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -254,12 +403,12 @@
                 </div>
 
                 <div class="social-links">
-                    <a href="https://wa.me/201097221867" target="_blank" class="social-btn whatsapp" aria-label="WhatsApp">
+                    <a href="https://wa.me/201097221867" target="_blank" class="social-btn whatsapp">
                         <svg viewBox="0 0 24 24">
                             <path
                                 d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.124-.272-.198-.57-.347z" />
                         </svg>
-                        <span>واتساب</span>
+                        واتساب
                     </a>
 
                     <a href="https://web.facebook.com/Mr.ShadyNasr/" target="_blank" class="social-btn facebook"
@@ -279,6 +428,14 @@
                         </svg>
                         <span>انستجرام</span>
                     </a>
+
+                    <a href="https://www.youtube.com/@Mr.ShadyNasr" target="_blank" class="social-btn youtube">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                        </svg>
+                        يوتيوب
+                    </a>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -286,6 +443,80 @@
             </div>
         </footer>
     </main>
+
+    <div id="prep-modal" class="custom-modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('prep-modal')">&times;</button>
+            <h3>المرحلة الإعدادية</h3>
+            <div class="modal-body-wrapper">
+
+                <div class="grade-block">
+                    <span class="grade-title">الصف الأول الإعدادي</span>
+                    <div class="terms-grid">
+                        <a href="primamedia.html" class="term-btn">الترم الأول</a>
+                        <a href="primamedia - copia.html" class="term-btn">الترم الثاني</a>
+                    </div>
+                </div>
+
+                <div class="grade-block">
+                    <span class="grade-title">الصف الثاني الإعدادي</span>
+                    <div class="terms-grid">
+                        <a href="secondamedia.html" class="term-btn">الترم الأول</a>
+                        <a href="secondmedia - copia.html" class="term-btn">الترم الثاني</a>
+                    </div>
+                </div>
+
+                <div class="grade-block">
+                    <span class="grade-title">الصف الثالث الإعدادي</span>
+                    <div class="terms-grid">
+                        <a href="terzamedia.html" class="term-btn">الترم الأول</a>
+                        <a href="terzamedia - copia.html" class="term-btn">الترم الثاني</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="sec-modal" class="custom-modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('sec-modal')">&times;</button>
+            <h3>المرحلة الثانوية</h3>
+            <div class="modal-body-wrapper">
+
+                <div class="grade-block">
+                    <span class="grade-title">الصف الأول الثانوي</span>
+                    <div class="terms-grid">
+                        <a href="primamedia.html" class="term-btn">الترم الأول</a>
+                        <a href="primamedia - copia.html" class="term-btn">الترم الثاني</a>
+                    </div>
+                </div>
+
+                <div class="grade-block">
+                    <span class="grade-title">الصف الثاني الثانوي</span>
+                    <div class="terms-grid">
+                        <a href="secondamedia.html" class="term-btn">الترم الأول</a>
+                        <a href="secondamedia - copia.html" class="term-btn">الترم الثاني</a>
+                    </div>
+                </div>
+
+                <div class="grade-block">
+                    <span class="grade-title">الصف الثالث الثانوي</span>
+                    <div class="terms-grid">
+                        <a href="terzamedia.html" class="term-btn">الترم الأول</a>
+                        <a href="terzamedia - copia.html" class="term-btn">الترم الثاني</a>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
@@ -320,6 +551,23 @@
 
             counters.forEach(counter => observer.observe(counter));
         });
+
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        window.onclick = function (event) {
+            if (event.target.classList.contains('custom-modal')) {
+                event.target.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
     </script>
 
 </body>

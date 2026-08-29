@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جدول المواعيد والسناتر | مستر شادي نصر</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="icon" type="image/png" href="8a5c7b63-63df-40ca-b342-9eb30d051056.png">
+    <link rel="icon" type="image/png" href="8a5c7b63-63df-40ca-b342-9eb30d051056.png">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="home.css">
+
+    <style>
+        .custom-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .custom-modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            position: relative;
+            width: min(100%, 450px);
+            max-height: 85vh;
+            overflow-y: auto;
+            background: rgba(20, 30, 48, 0.65);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 28px;
+            padding: 32px 24px;
+            text-align: center;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(30px) brightness(1.1);
+            -webkit-backdrop-filter: blur(30px) brightness(1.1);
+            animation: iosModalApper 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes iosModalApper {
+            from {
+                transform: scale(0.92) translateY(10px);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1) translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-content h3 {
+            margin: 0 0 24px;
+            color: #ffffff;
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            width: 32px;
+            height: 32px;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .close-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            color: #ffffff;
+        }
+
+        .modal-body-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .grade-block {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 18px;
+            padding: 16px;
+            text-align: right;
+        }
+
+        .grade-title {
+            color: #60a5fa;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .terms-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .term-btn {
+            display: inline-block;
+            text-align: center;
+            padding: 12px 8px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 0.88rem;
+            text-decoration: none;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .term-btn:hover {
+            background: rgba(59, 130, 246, 0.85);
+            border-color: rgba(147, 197, 253, 0.6);
+            box-shadow: 0 6px 15px rgba(59, 130, 246, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .logo-circle {
+            width: 50px;
+            height: 50px;
+            background: rgb(255, 255, 255);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 2px solid #ffffff;
+            flex-shrink: 0;
+        }
+
+        .logo-circle img {
+            width: 85%;
+            height: auto;
+            border-radius: 50%;
+        }
+
+        .schedule-page {
+            padding: 140px 0 80px;
+            min-height: 85vh;
+            background: var(--navy);
+            color: var(--text-on-dark);
+        }
+
+        .schedule-wrapper {
+            max-width: 920px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .schedule-header h1 {
+            margin: 0 0 12px;
+            font-size: clamp(2.1rem, 4vw, 3.2rem);
+            font-weight: 600;
+            letter-spacing: -0.045em;
+            color: var(--white);
+        }
+
+        .schedule-header p {
+            margin: 0 0 36px;
+            color: var(--muted-on-dark);
+            font-size: 1.05rem;
+        }
+
+        .schedule-card {
+            position: relative;
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01));
+            border: 1px solid var(--line-dark);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            box-shadow: 0 30px 75px rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(10px);
+            margin-bottom: 32px;
+            overflow: hidden;
+        }
+
+        .schedule-img {
+            width: 100%;
+            height: auto;
+            border-radius: 14px;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .schedule-card:hover .schedule-img {
+            transform: scale(1.008);
+        }
+
+        .schedule-actions {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .download-btn {
+            min-height: 54px;
+            padding: 0 32px;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Skip Link -->
+    <a href="#main-content" class="skip-link">الانتقال إلى المحتوى الرئيسي</a>
+
+    
+
+    <!-- الهيدر الموحد -->
+    <header class="site-header scrolled" id="siteHeader">
+        <div class="nav-shell container">
+            <a class="brand" href="gadwal.html" aria-label="شيكسبير الإنجليزية - الرئيسية">
+                <span class="logo-circle">
+                    <img src="8a5c7b63-63df-40ca-b342-9eb30d051056.png" alt="AE Logo">
+                </span>
+                <span class="brand-ar">مستر شادي نصر</span>
+            </a>
+            
+            <div class="nav-actions">
+                <a class="nav-cta" href="index.html">الرئيسية </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- المحتوى الرئيسي -->
+    <main class="schedule-page" id="main-content">
+        <div class="container">
+            <div class="schedule-wrapper">
+                
+                <div class="schedule-header">
+                    <span class="eyebrow" style="color: var(--mint);">جدول الحصص والسناتر</span>
+                    <h1>مواعيد الصفوف الدراسية</h1>
+                    <p>يمكنك استعراض الجدول، اضغط عليه لتكبيره أو حمله مباشرة على جهازك</p>
+                </div>
+
+                <!-- حاوية الصورة -->
+                <div class="schedule-card">
+                    <a href="schedule-image.jpg" target="_blank" title="اضغط لتكبير الصورة">
+                        <img src="schedule-image.jpg" alt="جدول مواعيد مستر شادي نصر" class="schedule-img">
+                    </a>
+                </div>
+
+                <!-- زر التحميل المباشر -->
+                <div class="schedule-actions">
+                    <a href="schedule-image.jpg" download="جدول-مواعيد-مستر-شادي-نصر.jpg" class="button button-primary download-btn">
+                        <svg class="button-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                        تحميل جدول المواعيد PDF / صورة
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- الـ Footer الموحد (المطابق لتصميم موقعك تماماً) -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-shell">
+                <div class="social-links">
+                    <a href="https://wa.me/201097221867" target="_blank" class="social-btn whatsapp" aria-label="WhatsApp">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.124-.272-.198-.57-.347z" />
+                        </svg>
+                        <span>واتساب</span>
+                    </a>
+                    <a href="https://web.facebook.com/Mr.ShadyNasr/" target="_blank" class="social-btn facebook" aria-label="Facebook">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                        </svg>
+                        <span>فيسبوك</span>
+                    </a>
+                    <a href="https://www.instagram.com/shady_nasr/" target="_blank" class="social-btn instagram" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                        </svg>
+                        <span>انستجرام</span>
+                    </a>
+                    <a href="https://www.youtube.com/@Mr.ShadyNasr" target="_blank" class="social-btn youtube">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                        </svg>
+                        يوتيوب
+                    </a>
+                </div>
+
+                <div class="footer-brand">
+                    <h3>مستر شادي نصر</h3>
+                    <p>شيكسبير الإنجليزية - طريقك للدرجة النهائية</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                © 2026 جميع الحقوق محفوظة لمستر شادي نصر - شيكسبير الإنجليزية
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

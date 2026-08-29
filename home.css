@@ -1,5 +1,5 @@
 :root {
-    --ink-soft: #692b92;
+    --ink-soft: #420a68;
     --ink: #2b113a;
     --navy: #1f0b2e;
     --navy-raised: #34154b;
@@ -213,13 +213,12 @@ svg {
 }
 
 .brand-ar {
-    font-family: "IBM Plex Sans Arabic", sans-serif;
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(2.2rem, 0.2vw, 5rem);
+    color: white;
 }
 
-.brand-en {
-    font-family: "Manrope", sans-serif;
-    letter-spacing: -0.035em;
-}
+
 
 .brand-separator {
     color: var(--muted-on-dark);
@@ -594,8 +593,7 @@ svg {
     transition: all 0.25s ease;
 }
 
-/* تنسيق Container النص الداخلي */
-.orbit-node > div {
+.orbit-node>div {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1207,4 +1205,11 @@ svg {
         width: 98px;
         height: 98px;
     }
+
+
+}
+.social-btn.youtube:hover {
+    background: #FF0000;
+    border-color: #FF0000;
+    color: #ffffff;
 }

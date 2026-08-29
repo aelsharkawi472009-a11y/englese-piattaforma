@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تواصل معنا والاستفسارات | مستر شادي نصر</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="icon" type="image/png" href="8a5c7b63-63df-40ca-b342-9eb30d051056.png">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="home.css">
+
+    <style>
+        .contact-page {
+            padding: 140px 0 80px;
+            min-height: 85vh;
+            background: var(--navy);
+            color: var(--text-on-dark);
+        }
+
+        .contact-shell {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .contact-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+            border: 1px solid var(--line-dark);
+            border-radius: 24px;
+            padding: 36px;
+            box-shadow: 0 30px 75px rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 20px;
+            text-align: right;
+        }
+
+        .form-group label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--muted-on-dark);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 18px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 12px;
+            color: var(--white);
+            font-size: 0.95rem;
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.25s ease, background 0.25s ease;
+        }
+
+        .form-group select option {
+            background: var(--navy-raised);
+            color: var(--white);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.35);
+        }
+
+        .submit-btn {
+            width: 100%;
+            min-height: 52px;
+            font-size: 0.98rem;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .form-note {
+            margin: 14px 0 0;
+            text-align: center;
+            font-size: 0.78rem;
+            color: var(--muted-on-dark);
+            opacity: 0.8;
+        }
+
+        .contact-info .eyebrow {
+            color: var(--mint);
+        }
+
+        .contact-info h1 {
+            margin: 0 0 18px;
+            font-size: clamp(2.2rem, 4vw, 3.4rem);
+            font-weight: 600;
+            line-height: 1.2;
+            letter-spacing: -0.04em;
+        }
+
+        .contact-info h1 span {
+            color: #89a0ff;
+        }
+
+        .contact-info p {
+            color: var(--muted-on-dark);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin: 0 0 36px;
+            max-width: 520px;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .contact-detail-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            color: var(--white);
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: color 0.2s ease;
+            width: fit-content;
+        }
+
+        .contact-detail-item:hover {
+            color: var(--mint);
+        }
+
+        .detail-icon {
+            display: grid;
+            place-items: center;
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--line-dark);
+            color: var(--white);
+        }
+
+        @media (max-width: 992px) {
+            .contact-shell {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+
+            .contact-info {
+                text-align: center;
+            }
+
+            .contact-info p {
+                margin-inline: auto;
+            }
+
+            .contact-details {
+                align-items: center;
+            }
+        }
+
+        .logo-circle {
+            width: 50px;
+            height: 50px;
+            background: rgb(255, 255, 255);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 2px solid #ffffff;
+            flex-shrink: 0;
+        }
+
+        .logo-circle img {
+            width: 85%;
+            height: auto;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <a href="#main-content" class="skip-link">الانتقال إلى المحتوى الرئيسي</a>
+
+    <header class="site-header scrolled" id="siteHeader">
+        <div class="nav-shell container">
+            <a class="brand" href="index.html" aria-label="شيكسبير الإنجليزية - الرئيسية">
+                <span class="logo-circle">
+                    <img src="8a5c7b63-63df-40ca-b342-9eb30d051056.png" alt="AE Logo">
+                </span>
+                <span class="brand-ar">مستر شادي نصر</span>
+            </a>
+
+            <div class="nav-actions">
+                <a class="nav-cta" href="index.html">الرئيسية </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="contact-page" id="main-content">
+        <div class="container">
+            <div class="contact-shell">
+
+                <div class="contact-card">
+                    <form id="whatsappForm" onsubmit="sendToWhatsApp(event)">
+
+                        <div class="form-group">
+                            <label for="studentName">الاسم</label>
+                            <input type="text" id="studentName" placeholder="الاسم بالكامل" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="gradeLevel">الصف الدراسي</label>
+                            <select id="gradeLevel" required>
+                                <option value="الصف الأول الإعدادي">الصف الأول الإعدادي</option>
+                                <option value="الصف الثاني الإعدادي">الصف الثاني الإعدادي</option>
+                                <option value="الصف الثالث الإعدادي">الصف الثالث الإعدادي</option>
+                                <option value="الصف الأول الثانوي">الصف الأول الثانوي</option>
+                                <option value="الصف الثاني الثانوي">الصف الثاني الثانوي</option>
+                                <option value="الصف الثالث الثانوي">الصف الثالث الثانوي</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="studentMessage">أخبرنا عن الاستفسار</label>
+                            <textarea id="studentMessage" rows="4"
+                                placeholder="ما الذي تريد الاستفسار عنه؟ (السناتر، المواعيد، الأونلاين...)"
+                                required></textarea>
+                        </div>
+
+                        <button type="submit" class="button button-primary submit-btn">
+                            إرسال التفاصيل عبر واتساب
+                        </button>
+
+                        <p class="form-note">بالضغط على إرسال ستُفتح رسالة واتساب جاهزة بالتفاصيل التي أدخلتها.</p>
+                    </form>
+                </div>
+
+                <div class="contact-info">
+                    <span class="eyebrow">لنبدأ بالتواصل المباشر</span>
+                    <h1>لديك استفسار؟ <br><span>تواصل معنا بسهولة.</span></h1>
+                    <p>شاركنا استفسارك أو المرحلة الدراسية المهتم بها، وسنرد عليك بكافة التفاصيل والمواعيد المتاحة في
+                        السناتر.</p>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-shell">
+                <div class="social-links">
+                    <a href="https://wa.me/201097221867" target="_blank" class="social-btn whatsapp">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.124-.272-.198-.57-.347z" />
+                        </svg>
+                        واتساب
+                    </a>
+                    <a href="https://web.facebook.com/Mr.ShadyNasr/" target="_blank" class="social-btn facebook"
+                        aria-label="Facebook">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                        </svg>
+                        <span>فيسبوك</span>
+                    </a>
+                    <a href="https://www.instagram.com/shady_nasr/" target="_blank" class="social-btn instagram"
+                        aria-label="Instagram">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                        </svg>
+                        <span>انستجرام</span>
+                    </a>
+                    <a href="https://www.youtube.com/@Mr.ShadyNasr" target="_blank" class="social-btn youtube">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                        </svg>
+                        يوتيوب
+                    </a>
+                </div>
+
+                <div class="footer-brand">
+                    <h3>مستر شادي نصر</h3>
+                    <p>شيكسبير الإنجليزية - طريقك للدرجة النهائية</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                © 2026 جميع الحقوق محفوظة لمستر شادي نصر - شيكسبير الإنجليزية
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function sendToWhatsApp(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('studentName').value;
+            const grade = document.getElementById('gradeLevel').value;
+            const message = document.getElementById('studentMessage').value;
+
+            const phoneNumber = "201097221867";
+
+            const text = `السلام عليكم، أنا الطالب: ${name}\nالصف الدراسي: ${grade}\nالاستفسار: ${message}`;
+            const encodedText = encodeURIComponent(text);
+
+            window.open(`https://wa.me/${phoneNumber}?text=${encodedText}`, '_blank');
+        }
+    </script>
+</body>
+
+</html>
