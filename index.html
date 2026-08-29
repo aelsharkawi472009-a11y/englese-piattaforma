@@ -1,575 +1,1222 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مستر شادي نصر | Mester Shady Nasr - شيكسبير الإنجليزية</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="icon" type="image/png" href="8a5c7b63-63df-40ca-b342-9eb30d051056.png">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="home.css">
-
-    <style>
-        .custom-modal {
-            display: none;
-            position: fixed;
-            inset: 0;
-            z-index: 9999;
-            background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .custom-modal.active {
-            display: flex;
-        }
-
-        .modal-content {
-            position: relative;
-            width: min(100%, 450px);
-            max-height: 85vh;
-            overflow-y: auto;
-            background: rgba(20, 30, 48, 0.65);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            border-top: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 28px;
-            padding: 32px 24px;
-            text-align: center;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(30px) brightness(1.1);
-            -webkit-backdrop-filter: blur(30px) brightness(1.1);
-            animation: iosModalApper 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        @keyframes iosModalApper {
-            from {
-                transform: scale(0.92) translateY(10px);
-                opacity: 0;
-            }
-
-            to {
-                transform: scale(1) translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .modal-content h3 {
-            margin: 0 0 24px;
-            color: #ffffff;
-            font-size: 1.25rem;
-            font-weight: 700;
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 16px;
-            left: 16px;
-            width: 32px;
-            height: 32px;
-            background: rgba(255, 255, 255, 0.12);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 50%;
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 1.2rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s ease;
-        }
-
-        .close-btn:hover {
-            background: rgba(255, 255, 255, 0.25);
-            color: #ffffff;
-        }
-
-        .modal-body-wrapper {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .grade-block {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 18px;
-            padding: 16px;
-            text-align: right;
-        }
-
-        .grade-title {
-            color: #60a5fa;
-            font-size: 1rem;
-            font-weight: 700;
-            margin-bottom: 12px;
-            display: block;
-        }
-
-        .terms-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-        }
-
-        .term-btn {
-            display: inline-block;
-            text-align: center;
-            padding: 12px 8px;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 12px;
-            color: #ffffff;
-            font-weight: 600;
-            font-size: 0.88rem;
-            text-decoration: none;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .term-btn:hover {
-            background: rgba(59, 130, 246, 0.85);
-            border-color: rgba(147, 197, 253, 0.6);
-            box-shadow: 0 6px 15px rgba(59, 130, 246, 0.4);
-            transform: translateY(-2px);
-        }
-
-        .logo-circle {
-            width: 50px;
-            height: 50px;
-            background: rgb(255, 255, 255);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            border: 2px solid #ffffff;
-            flex-shrink: 0;
-        }
-
-        .logo-circle img {
-            width: 85%;
-            height: auto;
-            border-radius: 50%;
-        }
-    </style>
-</head>
-
-<body>
-    <a class="skip-link" href="#main">انتقل إلى المحتوى الرئيسي</a>
-
-    <header class="site-header scrolled" id="siteHeader">
-        <div class="nav-shell container">
-            <a class="brand" href="#home" aria-label="شيكسبير الإنجليزية - الرئيسية">
-                <span class="logo-circle">
-                    <img src="8a5c7b63-63df-40ca-b342-9eb30d051056.png" alt="AE Logo">
-                </span>
-                <span class="brand-ar">مستر شادي نصر</span>
-            </a>
-
-            <nav aria-label="التنقل الرئيسي">
-                <ul class="nav-links">
-                    <li><a href="#home" class="active">الرئيسية</a></li>
-                    <li><a href="#metrics">الأرقام والإحصائيات</a></li>
-                    <li><a href="#stages">المراحل الدراسية</a></li>
-                    <li><a href="#schedules">الجدول</a></li>
-                </ul>
-            </nav>
-
-            <div class="nav-actions">
-                <a class="nav-cta" href="#stages">ابدأ التعلم الآن </a>
-            </div>
-        </div>
-    </header>
-
-    <main id="main">
-        <section class="hero" id="home">
-            <div class="container hero-shell">
-                <div class="hero-copy">
-                    <p class="eyebrow">منصة شيكسبير الإنجليزية التعليمية</p>
-                    <h1>
-                        طريقك للدرجة النهائية في اللغة الإنجليزية مع
-                        <span>مستر شادي نصر</span>
-                    </h1>
-                    <p class="hero-lead">
-                        شرح مبسط وذكي للمناهج التعليمية، إتقان الـ Grammar وحفظ الـ Vocabulary بأسهل الطرق الممكنة.
-                    </p>
-
-                    <div class="hero-actions">
-                        <a class="button button-primary" href="#stages">اختر مرحلتك الدراسية<svg class="button-arrow"
-                                viewBox="0 0 20 20" aria-hidden="true">
-                                <path d="M15.5 10H4.5m0 0 4.25-4.25M4.5 10l4.25 4.25" fill="none" stroke="currentColor"
-                                    stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path>
-                            </svg>
-                        </a>
-                        <a class="button button-secondary" href="#metrics">شاهد إحصائيات الطلاب</a>
-
-                        <a class="button button-secondary" href="#schedules"> جدول المواعيد </a>
-                    </div>
-
-                    <ul class="hero-meta">
-                        <li>شرح متكامل لجميع المناهج</li>
-                        <li>مراجعات ليلة الامتحان</li>
-                        <li>بنك أسئلة وتدريبات مكثفة</li>
-                    </ul>
-                </div>
-
-                <div class="engineering-visual">
-                    <div class="visual-glow"></div>
-                    <div class="capability-orbit">
-                        <div class="orbit-glow"></div>
-                        <div class="orbit-ring ring-one"></div>
-                        <div class="orbit-ring ring-two"></div>
-                        <div class="orbit-ring ring-three"></div>
-
-                        <div class="orbit-core">
-                            <div class="core-scan"></div>
-                            <img src="8a5c7b63-63df-40ca-b342-9eb30d051056.png" alt="Mester Shady Nasr Logo" class="core-logo">
-                        </div>
-
-                        <div class="orbit-node orbit-education">
-                            <div class="orbit-node-icon pink">
-                                <svg viewBox="0 0 24 24">
-                                    <path d="M12 14l9-5-9-5-9 5 9 5z"></path>
-                                </svg>
-                            </div>
-                            <div>
-                                <small>GRAMMAR</small>
-                                <strong>شرح القواعد</strong>
-                            </div>
-                        </div>
-
-                        <div class="orbit-node orbit-web">
-                            <div class="orbit-node-icon purple">
-                                <svg viewBox="0 0 24 24">
-                                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-                                </svg>
-                            </div>
-                            <div>
-                                <small>VOCABULARY</small>
-                                <strong>الحصيلة اللغوية</strong>
-                            </div>
-                        </div>
-
-                        <div class="orbit-node orbit-ai">
-                            <div class="orbit-node-icon mint">
-                                <svg viewBox="0 0 24 24">
-                                    <polyline points="9 11 12 14 22 4"></polyline>
-                                </svg>
-                            </div>
-                            <div>
-                                <small>EXAMS</small>
-                                <strong>اختبارات تفاعلية</strong>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="metrics" id="metrics">
-            <div class="container">
-                <div class="metrics-intro">
-                    <div>
-                        <p class="eyebrow">نتائج متفوقة كل عام</p>
-                        <h2>أرقام تجسّد نجاح طلابنا واعتزازنا بهم</h2>
-                    </div>
-                    <p>نحرص دائماً على تقديم المادة العلمية بأسلوب سلس يناسب كافة المستويات ويحقق أقصى استفادة للطالب.
-                    </p>
-                </div>
-
-                <div class="metrics-grid">
-                    <article class="metric">
-                        <div class="metric-value"><span class="counter" data-target="1250">0</span><span
-                                class="plus">+</span></div>
-                        <h3>طالب وطالبة</h3>
-                        <p>على مستوى الجمهورية</p>
-                    </article>
-
-                    <article class="metric">
-                        <div class="metric-value"><span class="counter" data-target="98">0</span><span
-                                class="plus">%</span></div>
-                        <h3>نسبة التفوق</h3>
-                        <p>في الامتحانات النهائية</p>
-                    </article>
-
-                    <article class="metric">
-                        <div class="metric-value"><span class="counter" data-target="450">0</span><span
-                                class="plus">+</span></div>
-                        <h3>امتحان وتدريب</h3>
-                        <p>لجميع الصفوف الدراسية</p>
-                    </article>
-
-                    <article class="metric">
-                        <div class="metric-value"><span class="counter" data-target="10">0</span><span
-                                class="plus">+</span></div>
-                        <h3>سنوات خبرة</h3>
-                        <p>في تدريس المنهج واللغة</p>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <section class="capabilities" id="stages">
-            <div class="container">
-                <div class="section-head centered">
-                    <p class="eyebrow">المراحل الدراسية</p>
-                    <h2>اختر مرحلتك وابدأ المذاكرة فوراً</h2>
-                </div>
-
-                <div class="services-showcase">
-                    <article class="education-card">
-                        <div class="education-watermark">PREP</div>
-                        <div class="education-card-head">
-
-                            <span class="education-label"> الإعدادية </span>
-                        </div>
-                        <div class="education-card-body">
-                            <div class="education-copy">
-                                <span class="service-sequence">STAGE 01</span>
-                                <h3>المرحلة الإعدادية</h3>
-                                <p>تأسيس شامل للجرامر والكلمات، مع تدريبات مستمرة على المحادثات وقطع الفهم.</p>
-                                <ul class="education-features">
-                                    <li>تأسيس الجرامر من الصفر</li>
-                                    <li>تدريبات واختبارات شهرية</li>
-                                    <li>شرح تبسيطي للمنهج</li>
-                                </ul>
-                                <a href="javascript:void(0)" onclick="openModal('prep-modal')"
-                                    class="button button-primary" style="margin-top: 25px;"> السنة الدراسية </a>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="education-card">
-                        <div class="education-watermark">SEC</div>
-                        <div class="education-card-head">
-
-                            <span class="education-label"
-                                style="border-color: rgba(89, 111, 191, 0.35); color: #89a0ff; background: rgba(65, 105, 255, 0.07);">ثانوية
-                                عامة</span>
-                        </div>
-                        <div class="education-card-body">
-                            <div class="education-copy">
-                                <span class="service-sequence" style="color: #89a0ff;">STAGE 02</span>
-                                <h3>المرحلة الثانوية</h3>
-                                <p>تركيز كامل على أفكار الامتحانات، الجرامر المتقدم، والمراجعات المكثفة للوصول للدرجة
-                                    النهائية.</p>
-                                <ul class="education-features">
-                                    <li>حل أفكار امتحانات السنوات السابقة</li>
-                                    <li>مراجعات مكثفة للدرجة النهائية</li>
-                                    <li>تدريب على كتابة المقال والتعبير</li>
-                                </ul>
-                                <a href="javascript:void(0)" onclick="openModal('sec-modal')"
-                                    class="button button-primary" style="margin-top: 25px;"> السنة الدراسية </a>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-
-
-        <section class="schedule-section" id="schedules">
-            <div class="container">
-                <div class="schedule-banner">
-                    <div class="schedule-info">
-                        <p class="eyebrow">مواعيد الحصص والسناتر</p>
-                        <h2>حمل جدول المواعيد الكامل أو استعرض <br>المواعيد المتاحة</h2>
-                        <p>تعرف على أوقات وأماكن التواجد في جميع السناتر لكل المراحل الدراسية.</p>
-                    </div>
-                    <div class="hero-actions">
-                        <a href="gadwal.html" class="button button-primary">جدول المواعيد</a>
-                        <a href="contact.html" class="button button-secondary">حجز واستفسار</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <footer class="site-footer" id="contact">
-            <div class="container footer-shell">
-                <div class="footer-brand">
-                    <h3>مستر شادي نصر</h3>
-                    <p>شيكسبير الإنجليزية - طريقك للدرجة النهائية</p>
-                </div>
-
-                <div class="social-links">
-                    <a href="https://wa.me/201097221867" target="_blank" class="social-btn whatsapp">
-                        <svg viewBox="0 0 24 24">
-                            <path
-                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.124-.272-.198-.57-.347z" />
-                        </svg>
-                        واتساب
-                    </a>
-
-                    <a href="https://web.facebook.com/Mr.ShadyNasr/" target="_blank" class="social-btn facebook"
-                        aria-label="Facebook">
-                        <svg viewBox="0 0 24 24">
-                            <path
-                                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-                        </svg>
-                        <span>فيسبوك</span>
-                    </a>
-
-                    <a href="https://www.instagram.com/shady_nasr/" target="_blank" class="social-btn instagram"
-                        aria-label="Instagram">
-                        <svg viewBox="0 0 24 24">
-                            <path
-                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-                        </svg>
-                        <span>انستجرام</span>
-                    </a>
-
-                    <a href="https://www.youtube.com/@Mr.ShadyNasr" target="_blank" class="social-btn youtube">
-                        <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path
-                                d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
-                        </svg>
-                        يوتيوب
-                    </a>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>© 2026 جميع الحقوق محفوظة لمستر شادي نصر - شيكسبير الإنجليزية</p>
-            </div>
-        </footer>
-    </main>
-
-    <div id="prep-modal" class="custom-modal">
-        <div class="modal-content">
-            <button class="close-btn" onclick="closeModal('prep-modal')">&times;</button>
-            <h3>المرحلة الإعدادية</h3>
-            <div class="modal-body-wrapper">
-
-                <div class="grade-block">
-                    <span class="grade-title">الصف الأول الإعدادي</span>
-                    <div class="terms-grid">
-                        <a href="primamedia.html" class="term-btn">الترم الأول</a>
-                        <a href="primamedia - copia.html" class="term-btn">الترم الثاني</a>
-                    </div>
-                </div>
-
-                <div class="grade-block">
-                    <span class="grade-title">الصف الثاني الإعدادي</span>
-                    <div class="terms-grid">
-                        <a href="secondamedia.html" class="term-btn">الترم الأول</a>
-                        <a href="secondmedia - copia.html" class="term-btn">الترم الثاني</a>
-                    </div>
-                </div>
-
-                <div class="grade-block">
-                    <span class="grade-title">الصف الثالث الإعدادي</span>
-                    <div class="terms-grid">
-                        <a href="terzamedia.html" class="term-btn">الترم الأول</a>
-                        <a href="terzamedia - copia.html" class="term-btn">الترم الثاني</a>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    <div id="sec-modal" class="custom-modal">
-        <div class="modal-content">
-            <button class="close-btn" onclick="closeModal('sec-modal')">&times;</button>
-            <h3>المرحلة الثانوية</h3>
-            <div class="modal-body-wrapper">
-
-                <div class="grade-block">
-                    <span class="grade-title">الصف الأول الثانوي</span>
-                    <div class="terms-grid">
-                        <a href="primamedia.html" class="term-btn">الترم الأول</a>
-                        <a href="primamedia - copia.html" class="term-btn">الترم الثاني</a>
-                    </div>
-                </div>
-
-                <div class="grade-block">
-                    <span class="grade-title">الصف الثاني الثانوي</span>
-                    <div class="terms-grid">
-                        <a href="secondamedia.html" class="term-btn">الترم الأول</a>
-                        <a href="secondamedia - copia.html" class="term-btn">الترم الثاني</a>
-                    </div>
-                </div>
-
-                <div class="grade-block">
-                    <span class="grade-title">الصف الثالث الثانوي</span>
-                    <div class="terms-grid">
-                        <a href="terzamedia.html" class="term-btn">الترم الأول</a>
-                        <a href="terzamedia - copia.html" class="term-btn">الترم الثاني</a>
-                    </div>
-                </div>
-
-
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const counters = document.querySelectorAll('.counter');
-            const speed = 200;
-
-            const startCounter = (counter) => {
-                const target = +counter.getAttribute('data-target');
-                const updateCount = () => {
-                    const count = +counter.innerText;
-                    const inc = Math.max(1, Math.floor(target / speed));
-
-                    if (count < target) {
-                        counter.innerText = Math.min(count + inc, target);
-                        setTimeout(updateCount, 15);
-                    } else {
-                        counter.innerText = target;
-                    }
-                };
-                updateCount();
-            };
-
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const counter = entry.target;
-                        startCounter(counter);
-                        observer.unobserve(counter);
-                    }
-                });
-            }, { threshold: 0.5 });
-
-            counters.forEach(counter => observer.observe(counter));
-        });
-
-        function openModal(modalId) {
-            document.getElementById(modalId).classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal(modalId) {
-            document.getElementById(modalId).classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        window.onclick = function (event) {
-            if (event.target.classList.contains('custom-modal')) {
-                event.target.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            }
-        }
-    </script>
-
-</body>
-
-</html>
+:root {
+    --ink-soft: #420a68;
+    --ink: #2b113a;
+    --navy: #1f0b2e;
+    --navy-raised: #34154b;
+    --surface: #f7f3fb;
+    --white: #ffffff;
+    --line: #e4d5f0;
+    --line-dark: rgba(255, 255, 255, 0.15);
+    --primary: #692b92;
+    --mint: #facc15;
+    --text-on-dark: #fbf8ff;
+    --muted-on-dark: #c4a7dc;
+
+    --shadow-sm: none;
+    --radius-md: 20px;
+    --container: 1180px;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 92px;
+}
+
+body {
+    margin: 0;
+    overflow-x: hidden;
+    background: var(--surface);
+    color: var(--ink);
+    font-family: "IBM Plex Sans Arabic", system-ui, sans-serif;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+}
+
+body.menu-open {
+    overflow: hidden;
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+::selection {
+    background: rgba(65, 105, 255, 0.22);
+    color: var(--ink);
+}
+
+.container {
+    width: min(calc(100% - 40px), var(--container));
+    margin-inline: auto;
+}
+
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 18px;
+    color: var(--primary);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+}
+
+.eyebrow::before {
+    width: 26px;
+    height: 1px;
+    background: currentColor;
+    content: "";
+}
+
+.section-head {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 40px;
+    margin-bottom: 58px;
+}
+
+.section-head.centered {
+    display: block;
+    max-width: 760px;
+    margin-inline: auto;
+    text-align: center;
+}
+
+.section-head.centered .eyebrow {
+    justify-content: center;
+}
+
+.section-head.centered .eyebrow::after {
+    width: 26px;
+    height: 1px;
+    background: currentColor;
+    content: "";
+}
+
+.section-head h2 {
+    max-width: 760px;
+    margin: 0;
+    font-size: clamp(2.1rem, 4vw, 3.7rem);
+    font-weight: 600;
+    letter-spacing: -0.045em;
+    line-height: 1.18;
+}
+
+.section-head>p {
+    max-width: 550px;
+    margin: 18px 0 0;
+    color: var(--ink-soft);
+    font-size: 1.04rem;
+}
+
+.skip-link {
+    position: fixed;
+    top: 12px;
+    right: 12px;
+    z-index: 9999;
+    padding: 10px 16px;
+    border-radius: 8px;
+    background: var(--white);
+    color: var(--ink);
+    transform: translateY(-150%);
+    transition: transform 0.2s ease;
+}
+
+.skip-link:focus {
+    transform: translateY(0);
+}
+
+.site-header {
+    position: fixed;
+    top: 14px;
+    right: 50%;
+    left: auto;
+    z-index: 1000;
+    width: min(calc(100% - 28px), 1240px);
+    border: 1px solid rgba(255, 255, 255, 0.11);
+    border-radius: 20px;
+    background: rgba(7, 17, 31, 0.72);
+    box-shadow: 0 16px 48px rgba(2, 10, 23, 0.18);
+    backdrop-filter: blur(18px);
+    transform: translateX(50%);
+    transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.site-header.scrolled {
+    border-color: rgba(255, 255, 255, 0.15);
+    background: rgba(7, 17, 31, 0.93);
+    box-shadow: 0 18px 55px rgba(2, 10, 23, 0.3);
+}
+
+.nav-shell {
+    display: flex;
+    width: min(calc(100% - 36px), 1180px);
+    min-height: 86px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+    transition: min-height 0.3s ease;
+}
+
+.site-header.scrolled .nav-shell {
+    min-height: 72px;
+}
+
+.brand {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 12px;
+    color: var(--white);
+}
+
+.brand-word {
+    font-family: "Manrope", sans-serif;
+    font-size: 1.08rem;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: 0.09em;
+}
+
+.site-header .brand-word {
+    display: inline-flex;
+    direction: rtl;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+.brand-ar {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(2.2rem, 0.2vw, 5rem);
+    color: white;
+}
+
+
+
+.brand-separator {
+    color: var(--muted-on-dark);
+    font-weight: 600;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 34px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.nav-links a {
+    position: relative;
+    color: #bec9d8;
+    font-size: 0.92rem;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.nav-links a::after {
+    position: absolute;
+    right: 0;
+    bottom: -10px;
+    width: 100%;
+    height: 1px;
+    background: var(--mint);
+    content: "";
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.25s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--white);
+}
+
+.nav-links a.active::after,
+.nav-links a:hover::after {
+    transform: scaleX(1);
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.nav-cta,
+.button {
+    display: inline-flex;
+    min-height: 50px;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    padding: 0 22px;
+    font-weight: 700;
+    line-height: 1;
+    transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.nav-cta {
+    min-height: 44px;
+    background: var(--white);
+    color: var(--ink);
+    font-size: 0.88rem;
+}
+
+.nav-cta:hover,
+.button:hover {
+    transform: translateY(-2px);
+}
+
+.button-primary {
+    background: var(--primary);
+    color: var(--white);
+    box-shadow: 0 18px 40px rgba(65, 105, 255, 0.24);
+}
+
+.button-primary:hover {
+    background: #5578ff;
+    box-shadow: 0 22px 50px rgba(65, 105, 255, 0.32);
+}
+
+.button-secondary {
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--white);
+}
+
+.button-secondary:hover {
+    border-color: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.button-arrow {
+    width: 18px;
+    height: 18px;
+    transition: transform 0.25s ease;
+}
+
+.button:hover .button-arrow {
+    transform: translateX(-3px);
+}
+
+.hero {
+    position: relative;
+    min-height: 850px;
+    overflow: hidden;
+    background: var(--navy);
+    color: var(--text-on-dark);
+}
+
+.hero::before {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+    background-size: 72px 72px;
+    mask-image: linear-gradient(to bottom, #000 20%, transparent 95%);
+    content: "";
+}
+
+.hero::after {
+    position: absolute;
+    top: -220px;
+    left: -180px;
+    width: 620px;
+    height: 620px;
+    border-radius: 50%;
+    background: rgba(65, 105, 255, 0.18);
+    content: "";
+    filter: blur(100px);
+}
+
+.hero-shell {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    min-height: 850px;
+    grid-template-columns: minmax(0, 1.05fr) minmax(430px, 0.95fr);
+    align-items: center;
+    gap: 80px;
+    padding-top: 122px;
+    padding-bottom: 76px;
+}
+
+.hero-copy {
+    max-width: 690px;
+}
+
+.hero .eyebrow {
+    color: var(--mint);
+}
+
+.hero h1 {
+    margin: 0;
+    font-size: clamp(2.8rem, 5vw, 5.2rem);
+    font-weight: 600;
+    letter-spacing: -0.045em;
+    line-height: 1.15;
+}
+
+.hero h1 span {
+    display: block;
+    color: #89a0ff;
+}
+
+.hero-lead {
+    max-width: 660px;
+    margin: 28px 0 0;
+    color: var(--muted-on-dark);
+    font-size: clamp(1.04rem, 1.5vw, 1.22rem);
+    line-height: 1.9;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 36px;
+}
+
+.hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px 28px;
+    margin: 38px 0 0;
+    padding: 24px 0 0;
+    border-top: 1px solid var(--line-dark);
+    color: #aab8ca;
+    list-style: none;
+    font-size: 0.84rem;
+}
+
+.hero-meta li {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.hero-meta li::before {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--mint);
+    box-shadow: 0 0 0 4px rgba(78, 215, 193, 0.1);
+    content: "";
+}
+
+.engineering-visual {
+    position: relative;
+    min-height: 550px;
+    perspective: 1200px;
+}
+
+.visual-glow {
+    position: absolute;
+    inset: 90px 30px 20px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(65, 105, 255, 0.28), transparent 68%);
+    filter: blur(20px);
+}
+
+.capability-orbit {
+    position: relative;
+    width: min(100%, 540px);
+    aspect-ratio: 1;
+    margin-inline: auto;
+    isolation: isolate;
+}
+
+.orbit-glow {
+    position: absolute;
+    inset: 17%;
+    z-index: -1;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(65, 105, 255, 0.26), rgba(78, 215, 193, 0.05) 48%, transparent 72%);
+    filter: blur(28px);
+}
+
+.orbit-ring {
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    z-index: -1;
+    border: 1px solid rgba(128, 153, 202, 0.16);
+    border-radius: 50%;
+    transform: translate(50%, -50%);
+}
+
+.ring-one {
+    width: 84%;
+    height: 84%;
+    border-style: dashed;
+    animation: orbit-spin 34s linear infinite;
+}
+
+.ring-two {
+    width: 62%;
+    height: 62%;
+    animation: orbit-spin-reverse 25s linear infinite;
+}
+
+.ring-three {
+    width: 39%;
+    height: 39%;
+    border-color: rgba(78, 215, 193, 0.18);
+}
+
+@keyframes orbit-spin {
+    from {
+        transform: translate(50%, -50%) rotate(0deg);
+    }
+
+    to {
+        transform: translate(50%, -50%) rotate(360deg);
+    }
+}
+
+@keyframes orbit-spin-reverse {
+    from {
+        transform: translate(50%, -50%) rotate(360deg);
+    }
+
+    to {
+        transform: translate(50%, -50%) rotate(0deg);
+    }
+}
+
+.orbit-core {
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    z-index: 3;
+    display: grid;
+    width: 140px;
+    height: 140px;
+    place-items: center;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.17);
+    border-radius: 50%;
+    padding: 16px;
+    background: linear-gradient(145deg, rgba(23, 46, 74, 0.96), rgba(10, 25, 43, 0.94));
+    box-shadow: 0 30px 75px rgba(0, 0, 0, 0.35);
+    text-align: center;
+    transform: translate(50%, -50%);
+}
+
+.orbit-core strong {
+    display: block;
+    font-family: "Manrope", sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: #fff;
+}
+
+.orbit-core small {
+    display: block;
+    margin-top: -4px;
+    color: #74879e;
+    font-family: "Manrope", sans-serif;
+    font-size: 0.45rem;
+    font-weight: 700;
+}
+
+.core-logo {
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.core-scan {
+    position: absolute;
+    top: -20%;
+    left: -75%;
+    width: 55%;
+    height: 140%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.11), transparent);
+    transform: rotate(18deg);
+    animation: core-scan 5.5s ease-in-out infinite;
+}
+
+@keyframes core-scan {
+
+    0%,
+    30% {
+        left: -75%;
+    }
+
+    72%,
+    100% {
+        left: 125%;
+    }
+}
+
+.orbit-node {
+    position: absolute;
+    z-index: 4;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    gap: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 14px;
+    padding: 12px 18px;
+    background: rgba(11, 28, 48, 0.95);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    transition: all 0.25s ease;
+}
+
+.orbit-node>div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: max-content;
+}
+
+.orbit-node small {
+    display: block;
+    color: #71859e;
+    font-family: "Manrope", sans-serif;
+    font-size: 0.68rem;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 3px;
+}
+
+.orbit-node strong {
+    display: block;
+    font-size: 0.85rem;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.orbit-education {
+    top: 5%;
+    right: 50%;
+    transform: translateX(50%);
+}
+
+.orbit-web {
+    top: 40%;
+    right: -6%;
+}
+
+.orbit-ai {
+    bottom: 5%;
+    right: 50%;
+    transform: translateX(50%);
+}
+
+.metrics {
+    padding: 110px 0 95px;
+    background: var(--surface);
+}
+
+.metrics-intro {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    align-items: end;
+    gap: 70px;
+    margin-bottom: 48px;
+}
+
+.metrics-intro h2 {
+    margin: 0;
+    font-size: clamp(2.1rem, 4vw, 3.4rem);
+    font-weight: 600;
+    letter-spacing: -0.045em;
+    line-height: 1.2;
+}
+
+.metrics-grid {
+    display: grid;
+    overflow: hidden;
+    grid-template-columns: repeat(4, 1fr);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    background: var(--white);
+    box-shadow: var(--shadow-sm);
+}
+
+.metric {
+    min-height: 180px;
+    padding: 34px;
+}
+
+.metric:not(:last-child) {
+    border-left: 1px solid var(--line);
+}
+
+.metric-value {
+    display: flex;
+    align-items: baseline;
+    gap: 3px;
+    color: var(--ink);
+    font-family: "Manrope", sans-serif;
+    font-size: clamp(2.5rem, 4vw, 3.8rem);
+    font-weight: 600;
+    line-height: 1;
+}
+
+.metric-value .plus {
+    color: var(--primary);
+    font-size: 0.55em;
+}
+
+.metric h3 {
+    margin: 18px 0 5px;
+    font-size: 0.95rem;
+}
+
+.metric p {
+    margin: 0;
+    color: #748197;
+    font-size: 0.82rem;
+}
+
+.capabilities {
+    padding: 120px 0;
+    background: var(--navy);
+    color: var(--text-on-dark);
+}
+
+.services-showcase {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.education-card {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 24px;
+    padding: 36px;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+    box-shadow: 0 30px 75px rgba(0, 0, 0, 0.16);
+}
+
+.education-watermark {
+    position: absolute;
+    bottom: -20px;
+    left: -8px;
+    color: rgba(255, 255, 255, 0.03);
+    font-family: "Manrope", sans-serif;
+    font-size: 6rem;
+    font-weight: 800;
+    pointer-events: none;
+}
+
+.education-card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 28px;
+}
+
+.education-icon {
+    display: grid;
+    width: 52px;
+    height: 52px;
+    place-items: center;
+    border-radius: 16px;
+    background: linear-gradient(145deg, #f05cae, #ff6c7d);
+    color: #fff;
+}
+
+.education-icon svg {
+    width: 26px;
+    height: 26px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+}
+
+.education-label {
+    border: 1px solid rgba(240, 92, 174, 0.35);
+    border-radius: 100px;
+    padding: 6px 12px;
+    background: rgba(240, 92, 174, 0.07);
+    color: #ff9bd2;
+    font-size: 0.7rem;
+    font-weight: 700;
+}
+
+.service-sequence {
+    display: block;
+    margin-bottom: 10px;
+    color: #ff8bc9;
+    font-family: "Manrope", sans-serif;
+    font-size: 0.65rem;
+    font-weight: 800;
+}
+
+.education-copy h3 {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.education-copy>p {
+    margin: 14px 0 0;
+    color: #9aa9bd;
+    font-size: 0.9rem;
+}
+
+.education-features {
+    display: grid;
+    gap: 10px;
+    margin: 20px 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.education-features li {
+    position: relative;
+    padding-right: 18px;
+    color: #d7e0ec;
+    font-size: 0.8rem;
+}
+
+.education-features li::before {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--mint);
+    content: "";
+    transform: translateY(-50%);
+}
+
+.metric-value {
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-start;
+    gap: 4px;
+    direction: ltr;
+}
+
+.schedule-section {
+    padding: 60px 0;
+    background: var(--surface);
+}
+
+.schedule-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    padding: 40px;
+    background: var(--navy-raised);
+    border: 1px solid var(--line-dark);
+    border-radius: var(--radius-md);
+    color: var(--white);
+}
+
+.schedule-info h2 {
+    margin: 10px 0;
+    font-size: 1.8rem;
+}
+
+.schedule-info p {
+    margin: 0;
+    color: var(--muted-on-dark);
+}
+
+.site-footer {
+    background: var(--navy);
+    color: var(--text-on-dark);
+    border-top: 1px solid var(--line-dark);
+    padding-top: 50px;
+}
+
+.footer-shell {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding-bottom: 40px;
+}
+
+.footer-brand h3 {
+    margin: 0 0 5px;
+    font-size: 1.4rem;
+    color: var(--white);
+}
+
+.footer-brand p {
+    margin: 0;
+    color: var(--muted-on-dark);
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.social-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--line-dark);
+    color: var(--white);
+    font-weight: 600;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.social-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}
+
+.social-btn:hover {
+    transform: translateY(-3px);
+}
+
+.social-btn.whatsapp:hover {
+    background: #25d366;
+}
+
+.social-btn.facebook:hover {
+    background: #1877f2;
+}
+
+.social-btn.instagram:hover {
+    background: #e4405f;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 20px;
+    border-top: 1px solid var(--line-dark);
+    color: var(--muted-on-dark);
+    font-size: 0.85rem;
+}
+
+@media (max-width: 992px) {
+    .hero-shell {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 40px;
+    }
+
+    .hero-copy {
+        margin-inline: auto;
+    }
+
+    .hero-actions {
+        justify-content: center;
+    }
+
+    .hero-meta {
+        justify-content: center;
+    }
+
+    .metrics-intro {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .services-showcase {
+        grid-template-columns: 1fr;
+    }
+
+    .nav-links {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: min(calc(100% - 32px), var(--container));
+    }
+
+    .site-header {
+        top: 8px;
+        width: calc(100% - 16px);
+        border-radius: 14px;
+    }
+
+    .nav-shell,
+    .site-header.scrolled .nav-shell {
+        width: calc(100% - 24px);
+        min-height: 62px;
+        gap: 12px;
+    }
+
+    .brand-word {
+        font-size: 0.82rem;
+    }
+
+    .site-header .brand-word {
+        gap: 5px;
+    }
+
+    .nav-cta {
+        min-height: 38px;
+        padding: 0 12px;
+        font-size: 0.72rem;
+        white-space: nowrap;
+    }
+
+    .hero {
+        min-height: auto;
+    }
+
+    .hero-shell {
+        min-height: auto;
+        gap: 18px;
+        padding-top: 106px;
+        padding-bottom: 58px;
+    }
+
+    .hero h1 {
+        font-size: clamp(2.2rem, 9vw, 3.8rem);
+        line-height: 1.2;
+    }
+
+    .hero-lead {
+        margin-top: 20px;
+        font-size: 0.98rem;
+        line-height: 1.8;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+        margin-top: 28px;
+    }
+
+    .button {
+        width: 100%;
+    }
+
+    .hero-meta {
+        flex-direction: column;
+        align-items: center;
+        gap: 9px;
+        margin-top: 28px;
+        padding-top: 18px;
+
+    }
+
+    .engineering-visual {
+        min-height: 360px;
+    }
+
+    .capability-orbit {
+        width: min(100%, 360px);
+    }
+
+    .orbit-core {
+        width: 112px;
+        height: 112px;
+        border-radius: 26px;
+        padding: 12px;
+    }
+
+    .orbit-node {
+        width: 118px !important;
+        min-width: 118px !important;
+        max-width: 118px !important;
+        min-height: 60px;
+        gap: 6px;
+        border-radius: 14px;
+        padding: 6px 8px !important;
+    }
+
+    .orbit-node-icon {
+        width: 34px;
+        height: 34px;
+        border-radius: 9px;
+    }
+
+    .orbit-node strong {
+        font-size: 0.64rem;
+        white-space: normal;
+        line-height: 1.2;
+    }
+
+    .orbit-education {
+        top: 2%;
+    }
+
+    .orbit-web {
+        top: 44%;
+        right: -6%;
+    }
+
+    .orbit-ai {
+        bottom: 2%;
+    }
+
+    .metrics,
+    .capabilities {
+        padding: 78px 0 68px;
+    }
+
+    .metrics-intro {
+        margin-bottom: 32px;
+    }
+
+    .metrics-intro h2,
+    .section-head h2 {
+        font-size: clamp(1.9rem, 7vw, 2.8rem);
+    }
+
+    .metric {
+        min-height: 156px;
+        padding: 26px 24px;
+    }
+
+    .services-showcase {
+        gap: 18px;
+    }
+
+    .education-card {
+        border-radius: 18px;
+        padding: 26px 22px;
+    }
+
+    .education-card-head {
+        gap: 16px;
+    }
+
+    .education-copy h3 {
+        font-size: 1.55rem;
+    }
+
+    .schedule-section {
+        padding: 38px 0;
+    }
+
+    .schedule-banner,
+    .footer-shell {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .schedule-banner {
+        padding: 28px 22px;
+    }
+
+    .schedule-info h2 {
+        font-size: 1.45rem;
+    }
+
+    .social-links {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .metrics-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .metric:not(:last-child) {
+        border-left: none;
+        border-bottom: 1px solid var(--line);
+    }
+}
+
+@media (max-width: 400px) {
+    .brand-word {
+        font-size: 0.7rem;
+    }
+
+    .site-header .brand-word {
+        gap: 3px;
+    }
+
+    .nav-cta {
+        padding: 0 9px;
+        font-size: 0.66rem;
+    }
+
+    .engineering-visual {
+        min-height: 316px;
+    }
+
+    .capability-orbit {
+        width: min(100%, 316px);
+    }
+
+    .orbit-node {
+        width: 98px !important;
+        min-width: 98px !important;
+        max-width: 98px !important;
+    }
+
+    .orbit-node small {
+        font-size: 0.44rem;
+    }
+
+    .orbit-node strong {
+        font-size: 0.58rem;
+    }
+
+    .orbit-web {
+        right: -8%;
+    }
+
+    .orbit-core {
+        width: 98px;
+        height: 98px;
+    }
+
+
+}
+.social-btn.youtube:hover {
+    background: #FF0000;
+    border-color: #FF0000;
+    color: #ffffff;
+}
